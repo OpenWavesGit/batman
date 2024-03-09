@@ -65,19 +65,17 @@ func Deel() {
 }
 
 func main() {
-	
-	fmt.Print("Enter password: ")
-	input := readerss.Readd()
-	hinput := filehasher.FindHash(input)
-	fmt.Println(hinput)
-	// filename := "bats.hash"
 
-	// if found, err := readerss.FindAndDeleteString(filename, hinput); err != nil {
-	// 	fmt.Println("Error:", err)
-	// } else if found {
-	// 	// If string is found and deleted, call function oppps
-	// 	fmt.Println("found")
-		
-	// }
-	
+	fmt.Print("Enter password: ")
+	inputs := readerss.Readd()
+	hinput := filehasher.FindHash(inputs)
+	fmt.Println(hinput)
+	filename := "bats.hash"
+
+	err := readerss.FindAndRemoveStringInFile(filename, inputs)
+	if err != nil {
+		fmt.Println("Error:", err)
+		return
+	}
+
 }
