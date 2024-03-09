@@ -1,16 +1,18 @@
 package readers
 
 import (
+	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
-func ReadFile(filePath string) (string, error) {
-	// Read the contents of the file
-	data, err := os.ReadFile(filePath)
-	if err != nil {
-		return "", fmt.Errorf("failed to read file: %w", err)
-	}
+func ReadFile(filePath string) string {
+	// Prompt the user to input the file path
+	fmt.Print("Enter the file path: ")
 
-	return string(data), nil
+	// Read the input from the user
+	scanner := bufio.NewScanner(os.Stdin)
+	scanner.Scan()
+	return strings.TrimSpace(scanner.Text())
 }
