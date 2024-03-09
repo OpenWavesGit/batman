@@ -3,9 +3,9 @@ package main
 
 import (
     "fmt"
-    "path/to/batrunner" 
+    "github.com/OpenWavesGit/batman/batrunner" 
 	
-	"github.com/yourusername/aesfile"
+	"github.com/OpenWavesGit/batman/aesfile"
 )
 
 func main() {
