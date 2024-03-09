@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/OpenWavesGit/batman/aesfile"
 	"github.com/OpenWavesGit/batman/batrunner"
+	"github.com/OpenWavesGit/batman/terminal"
 	"os"
 	"bufio"
 	
@@ -15,12 +16,12 @@ func main() {
 //
 reader := bufio.NewReader(os.Stdin)
 
-fmt.Println("Welcome to the GoLang Console App!")
-fmt.Print("Please enter your name: ")
+fmt.Println("EVER AUTOMATION!")
+fmt.Print("Please enter your key: ")
 
 name, _ := reader.ReadString('\n')
 
-fmt.Printf("Hello, %s! Welcome to the GoLang Console App!\n", name)
+fmt.Printf("Hello, %s! Welcome to the Ever Automation Console App!\n", name)
 //
 	
 	inputFile := "input.txt"
@@ -55,6 +56,9 @@ fmt.Printf("Hello, %s! Welcome to the GoLang Console App!\n", name)
 
 	// Print the output of the batch file
 	fmt.Println(output)
+	
 	fmt.Println("Press Enter to exit")
+	
 	reader.ReadString('\n')
+	terminal.DrawTerm()
 }
