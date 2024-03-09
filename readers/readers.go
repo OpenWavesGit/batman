@@ -29,4 +29,5 @@ func Readfile() string {
         fmt.Println("Error reading input:", scanner.Err())
         
     }
+    return ""
 }
