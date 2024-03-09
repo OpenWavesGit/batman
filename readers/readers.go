@@ -25,9 +25,11 @@ func Readfile() string {
             return err.Error()
         }
         fmt.Println("File contents:", string(data))
+        return string(data)
+
     } else {
         fmt.Println("Error reading input:", scanner.Err())
         
-    }
-    return ""
+    } 
+    
 }
