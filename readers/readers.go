@@ -6,7 +6,7 @@ import (
     "os"
 )
 
-func Readfile() string {
+func Readfile() (string, error) {
     // Prompt the user to enter the file path
     fmt.Print("Enter the file path: ")
     
@@ -18,18 +18,30 @@ func Readfile() string {
         // Get the file path entered by the user
         inputFile := scanner.Text()
         
-        // Read the contents of the file
-        data, err := os.ReadFile(inputFile)
+        // Open the file
+        file, err := os.Open(inputFile)
         if err != nil {
-            
-            return err.Error()
+            return "", fmt.Errorf("failed to open file: %w", err)
         }
-        fmt.Println("File contents:", string(data))
-        return string(data)
+        defer file.Close()
+        
+        // Create a scanner to read the file line by line
+        fileScanner := bufio.NewScanner(file)
+        
+        // Read the contents of the file line by line
+        var fileContent string
+        for fileScanner.Scan() {
+            fileContent += fileScanner.Text() + "\n"
+        }
+        
+        // Check for errors during scanning
+        if err := fileScanner.Err(); err != nil {
+            return "", fmt.Errorf("error reading file: %w", err)
+        }
+        
+        return fileContent, nil
 
     } else {
-        fmt.Println("Error reading input:", scanner.Err())
-        
+        return "", fmt.Errorf("error reading input: %w", scanner.Err())
     } 
-    
 }
