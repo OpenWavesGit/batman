@@ -19,10 +19,3 @@ func GenerateKey(length int) string {
     return string(key)
 }
 
-// GenerateTimePrefixedKey generates a unique key prefixed with current time.
-func GenerateTimePrefixedKey(length int) string {
-    currentTime := time.Now()
-    timeString := currentTime.Format("20060102150405")
-    key := GenerateKey(length - len(timeString))
-    return timeString + key
-}
