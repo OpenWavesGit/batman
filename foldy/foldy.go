@@ -5,7 +5,7 @@ import (
 	"os"
 )
 
-func foldy(nam string) {
+func Foldy(nam string) {
 	// Name of the folder you want to create
 	folderName := nam
 
