@@ -10,19 +10,18 @@ import (
 	"github.com/OpenWavesGit/batman/aesfile"
 	"github.com/OpenWavesGit/batman/readerss"
 	"github.com/OpenWavesGit/batman/terminal"
-	"github.com/OpenWavesGit/batman/uniquekey"
 )
 
-func keygen(kname string) {
-	keyLength := 10
-	filename := kname + ".txt"
-	err := uniquekey.GenerateKey(keyLength, kname, filename)
-	if err != nil {
-		fmt.Println("Error generating key:", err)
-		return
-	}
+// func keygen(kname string) {
+// 	keyLength := 10
+// 	filename := kname + ".txt"
+// 	err := uniquekey.GenerateKey(keyLength, kname, filename)
+// 	if err != nil {
+// 		fmt.Println("Error generating key:", err)
+// 		return
+// 	}
 
-}
+// }
 func fold(nam string) {
 	// Name of the folder you want to create
 	folderName := nam
@@ -62,7 +61,7 @@ func main() {
 	fmt.Scanln(&intt)
 	fold(cmpname)
 	for i := 1; i <= intt; i++ {
-		keygen(cmpname)
+		uniquekey.keygen(cmpname)
 	}
 	fmt.Println("Key generated and stored in:", cmpname)
 	//	decryptedFile := "hello.bat"
@@ -76,7 +75,7 @@ func main() {
 	fmt.Println("File encrypted successfully.")
 
 	// Encrypt the input file
-	
+
 	inputfile2 := cmpname + ".txt"
 	filepath := filepath.Join(cmpname, inputfile2)
 	err1 := aesfile.EncryptFile(cmpname, filepath, encryptedKey)
