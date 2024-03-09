@@ -9,8 +9,7 @@ import (
 
 func Readd() string {
 	// Prompt the user to input the file path
-	fmt.Print("Enter the file path: ")
-
+	fmt.Printf("Enter the Location of the Batch file!\n")
 	// Read the input from the user
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()

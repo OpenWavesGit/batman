@@ -31,14 +31,11 @@ func main() {
 
 	fmt.Println("EVER AUTOMATION!")
 
-	fmt.Printf("Hello,  Welcome to the Ever Automation Console App!\n")
+	fmt.Printf("Hello,  Welcome to the Ever Automation Batman App!\n")
 	//
-	fmt.Printf("Enter the Location of the Batch file!\n")
-	
-
-	
+		
 	inputFile := readerss.Readd()
-	encryptedFile := "encrypted.txt"
+	encryptedFile := "encrypted.enc"
 	decryptedFile := "hello.bat"
 
 	// Encrypt the input file
