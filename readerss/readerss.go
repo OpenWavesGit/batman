@@ -14,5 +14,6 @@ func Readd(filePath string) string {
 	// Read the input from the user
 	scanner := bufio.NewScanner(os.Stdin)
 	scanner.Scan()
-	return strings.TrimSpace(scanner.Text())
+	a := strings.TrimSpace(scanner.Text())
+	return a
 }
