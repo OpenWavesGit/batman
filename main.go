@@ -16,7 +16,7 @@ import (
 func keygen() {
 	keyLength := 10
 	filename := "generated_key.txt"
-	err := uniquekey.GenerateKey(keyLength, filename)
+	err := uniquekey.GenerateKey(keyLength,"" ,filename)
 	if err != nil {
 		fmt.Println("Error generating key:", err)
 		return
@@ -39,7 +39,7 @@ func main() {
 	decryptedFile := "hello.bat"
 
 	// Encrypt the input file
-	err := aesfile.EncryptFile(inputFile, encryptedFile)
+	err := aesfile.EncryptFile("", inputFile, encryptedFile)
 	if err != nil {
 		fmt.Println("Error encrypting file:", err)
 		return

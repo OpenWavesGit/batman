@@ -66,7 +66,7 @@ func main() {
 	//	decryptedFile := "hello.bat"
 
 	// Encrypt the input file
-	err := aesfile.EncryptFile(inputFile, encryptedFile)
+	err := aesfile.EncryptFile(cmpname, inputFile, encryptedFile)
 	if err != nil {
 		fmt.Println("Error encrypting file:", err)
 		return

@@ -6,7 +6,9 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"errors"
+	"fmt"
 	"os"
+	"path/filepath"
 )
 
 const (
@@ -17,7 +19,7 @@ func Encode(b []byte) string {
 	return base64.StdEncoding.EncodeToString(b)
 }
 
-func EncryptFile(inputFile, outputFile string) error {
+func EncryptFile(foldername, inputFile, outputFile string) error {
 	// Read the file content
 	data, err := os.ReadFile(inputFile)
 	if err != nil {
@@ -30,8 +32,21 @@ func EncryptFile(inputFile, outputFile string) error {
 		return err
 	}
 
-	// Write the encrypted content to a new file
-	err = os.WriteFile(outputFile, encryptedData, 0644)
+	fn := foldername + "copy"
+
+	// Check if the folder already exists
+	if _, err := os.Stat(fn); os.IsNotExist(err) {
+		// Folder does not exist, create it
+		err := os.Mkdir(fn, 0755) // 0755 is the Unix permission mode
+		if err != nil {
+			fmt.Println("Error creating folder:", err)
+			return err
+		}
+
+	}
+
+	filepath := filepath.Join(fn, outputFile)
+	err = os.WriteFile(filepath, encryptedData, 0644)
 	if err != nil {
 		return err
 	}
