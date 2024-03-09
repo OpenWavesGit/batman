@@ -9,7 +9,7 @@ import (
 	"os"
 	"bufio"
 	"github.com/OpenWavesGit/batman/uniquekey"
-	"github.com/OpenWavesGit/batman/reader"
+	"github.com/OpenWavesGit/batman/readers"
 
 	
 )
@@ -40,7 +40,7 @@ fmt.Println("EVER AUTOMATION!")
 fmt.Printf("Hello,  Welcome to the Ever Automation Console App!\n")
 //
 fmt.Printf("Enter the Location of the Batch file!\n")	
-    inputFile, _ := reader.ReadString('\n')
+    inputFile := readers.Readfile()
 
 	encryptedFile := "encrypted.txt"
 	decryptedFile := "hello.bat"
