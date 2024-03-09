@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func Readd(filePath string) string {
+func Readd() string {
 	// Prompt the user to input the file path
 	fmt.Print("Enter the file path: ")
 
