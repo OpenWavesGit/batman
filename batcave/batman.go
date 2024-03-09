@@ -8,6 +8,7 @@ import (
 	"path/filepath"
 
 	"github.com/OpenWavesGit/batman/aesfile"
+	"github.com/OpenWavesGit/batman/filehasher"
 	"github.com/OpenWavesGit/batman/foldy"
 	"github.com/OpenWavesGit/batman/readerss"
 	"github.com/OpenWavesGit/batman/terminal"
@@ -17,7 +18,7 @@ import (
 func main() {
 	var intt int
 	encryptedFile := "encrypted.enc"
-	encryptedKey := "key.enc"
+//	encryptedKey := "key.enc"
 	//
 	reader := bufio.NewReader(os.Stdin)
 
@@ -27,7 +28,7 @@ func main() {
 	cmpname := readerss.Readd()
 	fmt.Printf("Enter the Location of the Batch file!\n")
 	inputFile := readerss.Readd()
-	
+
 	fmt.Println("Enter the Total number of keys for the company")
 	fmt.Scanln(&intt)
 
@@ -38,6 +39,8 @@ func main() {
 	}
 	fmt.Println("Key generated and stored in:", cmpname)
 
+	// Encrypt the batch file
+
 	err := aesfile.EncryptFile(cmpname, inputFile, encryptedFile)
 	if err != nil {
 		fmt.Println("Error encrypting file:", err)
@@ -45,16 +48,19 @@ func main() {
 	}
 	fmt.Println("File encrypted successfully.")
 
-	// Encrypt the input file
+	// Hash the Kay file
 
-	inputfile2 := cmpname + ".txt"
-	filepath := filepath.Join(cmpname, inputfile2)
-	err1 := aesfile.EncryptFile(cmpname, filepath, encryptedKey)
+	inputFilePath := cmpname + ".txt"
+	outputFilePath := "bats.hash"
+	ifilepath := filepath.Join(cmpname, inputFilePath)
+    ofilepath := filepath.Join(cmpname+"copy", outputFilePath)
+	err1 := filehasher.HashFile(ifilepath, ofilepath)
 	if err1 != nil {
-		fmt.Println("Error encrypting file:", err1)
+		fmt.Println("Error:", err1)
 		return
 	}
-	fmt.Println("File encrypted successfully.")
+
+	fmt.Println("Key Hashing completed successfully.")
 
 	fmt.Println("Press Enter to exit")
 	reader.ReadString('\n')

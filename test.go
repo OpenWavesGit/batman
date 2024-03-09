@@ -1,20 +1,21 @@
 package main
 
 import (
-	"fmt"
-	
-	"github.com/OpenWavesGit/batman/uniquekey"
-	
-	
+    "fmt"
+    "os"
+    "golang.org/x/term"
 )
 
 func main() {
-	keyLength := 10
-	filename := "kname"+".txt"
-	err := uniquekey.GenerateKey(keyLength, filename)
-	if err != nil {
-		fmt.Println("Error generating key:", err)
-		return
-	}
-	fmt.Println("Key generated and stored in:", filename)
+    fmt.Print("Enter password: ")
+
+    // Disable echoing of input characters
+    password, err := term.ReadPassword(int(os.Stdin.Fd()))
+    if err != nil {
+        fmt.Println("Error reading password:", err)
+        return
+    }
+
+    // Print a newline to move to the next line after password input
+    fmt.Println("\nPassword entered:", string(password))
 }
