@@ -46,7 +46,7 @@ func GenerateKey(length int, folderName, fileName string) error {
 	return nil
 }
 
-func keygen(kname string) {
+func Keygen(kname string) {
 	keyLength := 10
 	filename := kname + ".txt"
 	err := GenerateKey(keyLength, kname, filename)

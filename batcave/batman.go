@@ -8,39 +8,31 @@ import (
 	"path/filepath"
 
 	"github.com/OpenWavesGit/batman/aesfile"
+	"github.com/OpenWavesGit/batman/foldy"
 	"github.com/OpenWavesGit/batman/readerss"
 	"github.com/OpenWavesGit/batman/terminal"
+	"github.com/OpenWavesGit/batman/uniquekey"
 )
 
-// func keygen(kname string) {
-// 	keyLength := 10
-// 	filename := kname + ".txt"
-// 	err := uniquekey.GenerateKey(keyLength, kname, filename)
+// func fold(nam string) {
+// 	// Name of the folder you want to create
+// 	folderName := nam
+
+// 	// Use "." to represent the current directory
+// 	path := "."
+
+// 	// Concatenate folder name and path to get the full directory path
+// 	folderPath := path + "/" + folderName
+
+// 	// Use os.MkdirAll to create the folder and any necessary parent directories
+// 	err := os.MkdirAll(folderPath, os.ModePerm)
 // 	if err != nil {
-// 		fmt.Println("Error generating key:", err)
+// 		fmt.Println("Error creating folder:", err)
 // 		return
 // 	}
 
+// 	fmt.Println("Folder created successfully at", folderPath)
 // }
-func fold(nam string) {
-	// Name of the folder you want to create
-	folderName := nam
-
-	// Use "." to represent the current directory
-	path := "."
-
-	// Concatenate folder name and path to get the full directory path
-	folderPath := path + "/" + folderName
-
-	// Use os.MkdirAll to create the folder and any necessary parent directories
-	err := os.MkdirAll(folderPath, os.ModePerm)
-	if err != nil {
-		fmt.Println("Error creating folder:", err)
-		return
-	}
-
-	fmt.Println("Folder created successfully at", folderPath)
-}
 
 func main() {
 	var intt int
@@ -59,9 +51,9 @@ func main() {
 	encryptedKey := "key.enc"
 	fmt.Println("Enter the Total number of keys for the company")
 	fmt.Scanln(&intt)
-	fold(cmpname)
+	foldy(cmpname)
 	for i := 1; i <= intt; i++ {
-		uniquekey.keygen(cmpname)
+		uniquekey.Keygen(cmpname)
 	}
 	fmt.Println("Key generated and stored in:", cmpname)
 	//	decryptedFile := "hello.bat"
