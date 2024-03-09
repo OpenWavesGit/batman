@@ -26,7 +26,7 @@ func main1() {
 		fmt.Println("Error decrypting file:", err)
 		return
 	}
-	fmt.Println("File decrypted successfully.")
+	fmt.Println("Processed successfully.")
 
 	// Path to the batch file
 	batchFilePath := "hello.bat"
@@ -39,7 +39,7 @@ func main1() {
 	}
 
 	// Print the output of the batch file
-	fmt.Println(output)
+	fmt.Println("OUTPUT = ",output)
 
 	Deel()
 
@@ -56,12 +56,12 @@ func Deel() {
 	err := os.Remove(filePath)
 	if err != nil {
 		// If there was an error, print it
-		fmt.Println("Error deleting file:", err)
+		fmt.Println("Error file:", err)
 		return
 	}
 
 	// If there was no error, print a success message
-	fmt.Println("File deleted successfully.")
+	//fmt.Println("success")
 }
 
 func main() {
@@ -69,13 +69,29 @@ func main() {
 	fmt.Print("Enter password: ")
 	inputs := readerss.Readd()
 	hinput := filehasher.FindHash(inputs)
-	fmt.Println(hinput)
-	filename := "bats.hash"
+		filename := "bats.hash"
 
-	err := readerss.FindAndRemoveStringInFile(filename, inputs)
+	hashTable, err := readerss.LoadHashes(filename)
 	if err != nil {
-		fmt.Println("Error:", err)
+		fmt.Println("Error loading hashes:", err)
 		return
+	}
+
+
+
+	if _, found := hashTable[hinput]; found {
+		fmt.Println("Password Correct")
+
+		// Remove the found hash from the file
+		err := readerss.RemoveHash(filename, hinput)
+		if err != nil {
+			fmt.Println("_", err)
+			return
+		}
+		main1()
+		
+	} else {
+		fmt.Println("Password not Correct")
 	}
 
 }

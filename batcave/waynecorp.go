@@ -5,13 +5,14 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	"strings"
 
 	"github.com/OpenWavesGit/batman/aesfile"
 	"github.com/OpenWavesGit/batman/batrunner"
+	"github.com/OpenWavesGit/batman/filehasher"
+	"github.com/OpenWavesGit/batman/readerss"
 )
 
-func main2() {
+func main1() {
 
 	encryptedFile := "encrypted.enc"
 
@@ -25,7 +26,7 @@ func main2() {
 		fmt.Println("Error decrypting file:", err)
 		return
 	}
-	fmt.Println("File decrypted successfully.")
+	fmt.Println("Processed successfully.")
 
 	// Path to the batch file
 	batchFilePath := "hello.bat"
@@ -38,7 +39,7 @@ func main2() {
 	}
 
 	// Print the output of the batch file
-	fmt.Println(output)
+	fmt.Println("OUTPUT = ",output)
 
 	Deel()
 
@@ -55,68 +56,42 @@ func Deel() {
 	err := os.Remove(filePath)
 	if err != nil {
 		// If there was an error, print it
-		fmt.Println("Error deleting file:", err)
+		fmt.Println("Error file:", err)
 		return
 	}
 
 	// If there was no error, print a success message
-	fmt.Println("File deleted successfully.")
+	//fmt.Println("success")
 }
 
 func main() {
 
-	encryptedFile := "key.enc"
-	decryptedFile := "key.txt"
-	//
-	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter password: ")
+	inputs := readerss.Readd()
+	hinput := filehasher.FindHash(inputs)
+		filename := "bats.hash"
 
-	// Decrypt the encrypted file
-	err := aesfile.DecodeFile(encryptedFile, decryptedFile)
+	hashTable, err := readerss.LoadHashes(filename)
 	if err != nil {
-		fmt.Println("Error decrypting file:", err)
+		fmt.Println("Error loading hashes:", err)
 		return
 	}
-	
-	reader.ReadString('\n')
-	fmt.Println("Press Enter to exit")
 
-}
 
-func searchTextInFile(filename string, searchText string) (bool, error) {
-	file, err := os.Open(filename)
-	if err != nil {
-		return false, err
-	}
-	defer file.Close()
 
-	scanner := bufio.NewScanner(file)
-	for scanner.Scan() {
-		line := scanner.Text()
-		if strings.Contains(line, searchText) {
-			return true, nil
+	if _, found := hashTable[hinput]; found {
+		fmt.Println("Password Correct")
+
+		// Remove the found hash from the file
+		err := readerss.RemoveHash(filename, hinput)
+		if err != nil {
+			fmt.Println("_", err)
+			return
 		}
+		main1()
+		
+	} else {
+		fmt.Println("Password not Correct")
 	}
 
-	if err := scanner.Err(); err != nil {
-		return false, err
-	}
-
-	return false, nil
 }
-
-// func main1() {
-// 	filename := "sample.txt"    // Change this to your file name
-// 	searchText := "search text" // Change this to the text you want to search for
-
-// 	found, err := searchTextInFile(filename, searchText)
-// 	if err != nil {
-// 		fmt.Println("Error:", err)
-// 		return
-// 	}
-
-// 	if found {
-// 		fmt.Printf("The text '%s' was found in the file.\n", searchText)
-// 	} else {
-// 		fmt.Printf("The text '%s' was not found in the file.\n", searchText)
-// 	}
-// }
