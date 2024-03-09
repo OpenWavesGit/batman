@@ -8,8 +8,24 @@ import (
 	"github.com/OpenWavesGit/batman/terminal"
 	"os"
 	"bufio"
+	"github.com/OpenWavesGit/batman/uniquekey"
+	"github.com/OpenWavesGit/batman/reader"
+
 	
 )
+
+func keygen() {
+    keyLength := 10
+    filename := "generated_key.txt"
+    err := uniquekey.GenerateKey(keyLength, filename)
+    if err != nil {
+        fmt.Println("Error generating key:", err)
+        return
+    }
+    fmt.Println("Key generated and stored in:", filename)
+}
+
+
 
 func main() {
 
@@ -17,14 +33,15 @@ func main() {
 reader := bufio.NewReader(os.Stdin)
 
 fmt.Println("EVER AUTOMATION!")
-fmt.Print("Please enter your key: ")
 
-name, _ := reader.ReadString('\n')
 
-fmt.Printf("Hello, %s! Welcome to the Ever Automation Console App!\n", name)
+
+
+fmt.Printf("Hello,  Welcome to the Ever Automation Console App!\n")
 //
-	
-	inputFile := "input.txt"
+fmt.Printf("Enter the Location of the Batch file!\n")	
+    inputFile, _ := reader.ReadString('\n')
+
 	encryptedFile := "encrypted.txt"
 	decryptedFile := "hello.bat"
 

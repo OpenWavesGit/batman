@@ -8,7 +8,7 @@ import (
 	
 )
 
-func main() {
+func maisn() {
     keyLength := 10
     filename := "generated_key.txt"
     err := uniquekey.GenerateKey(keyLength, filename)
