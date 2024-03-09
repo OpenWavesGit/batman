@@ -9,11 +9,12 @@ import (
 )
 
 func main() {
-
-
-
-keyLength := 20
-uniqueKey := uniquekey.GenerateTimePrefixedKey(keyLength)
-fmt.Println("Generated Key:", uniqueKey)
-
+    keyLength := 10
+    filename := "generated_key.txt"
+    err := uniquekey.GenerateKey(keyLength, filename)
+    if err != nil {
+        fmt.Println("Error generating key:", err)
+        return
+    }
+    fmt.Println("Key generated and stored in:", filename)
 }
