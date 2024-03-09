@@ -40,7 +40,7 @@ fmt.Println("EVER AUTOMATION!")
 fmt.Printf("Hello,  Welcome to the Ever Automation Console App!\n")
 //
 fmt.Printf("Enter the Location of the Batch file!\n")	
-    inputFile, _ := readers.Readfile()
+    inputFile := readers.Readfile()
 
 	encryptedFile := "encrypted.txt"
 	decryptedFile := "hello.bat"

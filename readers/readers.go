@@ -21,12 +21,12 @@ func Readfile() string {
         // Read the contents of the file
         data, err := os.ReadFile(inputFile)
         if err != nil {
-            fmt.Println("Error reading file:", err)
-            return
+            
+            return err.Error()
         }
         fmt.Println("File contents:", string(data))
     } else {
         fmt.Println("Error reading input:", scanner.Err())
-        return
+        
     }
 }
