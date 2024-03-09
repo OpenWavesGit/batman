@@ -8,7 +8,7 @@ import (
 
 	"github.com/OpenWavesGit/batman/aesfile"
 	"github.com/OpenWavesGit/batman/batrunner"
-	"github.com/OpenWavesGit/batman/readers"
+	"github.com/OpenWavesGit/batman/readerss"
 	"github.com/OpenWavesGit/batman/terminal"
 	"github.com/OpenWavesGit/batman/uniquekey"
 )
@@ -34,7 +34,7 @@ func main() {
 	fmt.Printf("Hello,  Welcome to the Ever Automation Console App!\n")
 	//
 	fmt.Printf("Enter the Location of the Batch file!\n")
-	inputFile, _ := readers.Readfile()
+	inputFile := readerss.Readfile()
 
 	encryptedFile := "encrypted.txt"
 	decryptedFile := "hello.bat"
